@@ -5,6 +5,11 @@ public class Employee extends Person {
         super(firstName, lastName);
     }
 
+    public void printFullName() {
+        System.out.println("Director: ");
+        super.printFullName();
+    }
+
     public void printAge() {
         System.out.println("Age: " + age);
     }

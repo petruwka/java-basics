@@ -10,6 +10,7 @@ public class Circle extends Shape implements ShapeInterface, Serializable, Clone
         this.radius = radius;
     }
 
+
     public double calculateArea() {
         return pi * radius * radius;
     }

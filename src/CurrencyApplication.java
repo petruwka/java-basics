@@ -6,7 +6,8 @@ public class CurrencyApplication {
 
     public static void main(String[] args) {
 
-        String usd = "american dollar";
+
+
 
         Currency usdCurrency = Currency.USD;
         System.out.println(usdCurrency.getExchangeRate());

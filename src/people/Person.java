@@ -15,6 +15,13 @@ public class Person extends AbstractPerson {
 
     static private int count = 0;
 
+
+    static final int ANOTHER_COUNTER = 0;
+
+    public static int getCountOfPErsons() {
+        return count;
+    }
+
     public Person(String firstName, String lastName) {
         super(lastName);
         count++;

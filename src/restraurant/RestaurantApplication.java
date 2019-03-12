@@ -1,5 +1,6 @@
 package restraurant;
 
+import com.sun.org.apache.regexp.internal.RESyntaxException;
 import people.*;
 import people.student.Student;
 
@@ -9,8 +10,7 @@ import static java.util.Objects.isNull;
 
 public class RestaurantApplication {
 
-    public static void main(String[] args) {
-        Student s = new Student();
+    public static void main(String[] args)   {
         Restaurant restaurant = new Restaurant();
 
         Order order1 = new Order("Ice cream", 2);
@@ -20,7 +20,14 @@ public class RestaurantApplication {
         //
 
         Table table1 = new Table(new Order[] {order1, order2});
-        restaurant.addTableOrder(table1, 2);
+        addTableORder(restaurant, table1, 7);
+
+        //        try {
+//            restaurant.addTableOrder(table1, 7);
+//        } catch (RestaurantBusyException e) {
+//            System.out.println("Sorry. Restaurant is busy.");
+//        }
+
         restaurant.printTables();
 
 //        Class aClass = table1.getClass();
@@ -32,7 +39,6 @@ public class RestaurantApplication {
 
         boolean b = order1 == order2;
         System.out.println("equal by == " + b);
-
 
         if (Objects.equals(order1, order2)) {
             System.out.println("orders are equal");
@@ -51,6 +57,15 @@ public class RestaurantApplication {
             System.out.println("p2 is not client");
         }
 
+
+    }
+
+    private static void addTableORder(Restaurant restaurant, Table table1, int numberOFTable)  {
+        try {
+            restaurant.addTableOrder(table1, 7);
+        } catch (RestaurantBusyException e) {
+          throw new RuntimeException(e);
+        }
 
     }
 }

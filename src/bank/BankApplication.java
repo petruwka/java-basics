@@ -2,23 +2,29 @@ package bank;
 
 public class BankApplication {
     public static void main(String[] args) {
-        User user = new User(5);
-        user.setName("Paul");
 
-        BankAcoount bankAcoount = new BankAcoount();
-        bankAcoount.deposit(150);
+        try {
+            User user = new User(5);
+            user.setName("Paul");
 
-        BankAcoount bankAcoount2 = new BankAcoount();
-        bankAcoount2.deposit(100);
+            BankAcoount bankAcoount = new BankAcoount();
+            bankAcoount.deposit(150);
 
-        user.addBankAccount(bankAcoount);
-        user.addBankAccount(bankAcoount2);
+            BankAcoount bankAcoount2 = new BankAcoount();
+            bankAcoount2.deposit(100);
 
-        user.printUserInfo();
+            user.addBankAccount(bankAcoount);
+            user.addBankAccount(bankAcoount2);
 
-        transfer(bankAcoount, bankAcoount2, 75);
+            user.printUserInfo();
 
-        user.printUserInfo();
+            transfer(bankAcoount, bankAcoount2, 75);
+
+            user.printUserInfo();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void transfer(BankAcoount from, BankAcoount to, double value) {

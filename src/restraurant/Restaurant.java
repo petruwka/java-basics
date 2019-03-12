@@ -1,12 +1,14 @@
 package restraurant;
 
-import javafx.scene.control.Tab;
-
 public class Restaurant {
 
     private Table[] tables = new Table[5];
 
-    public void addTableOrder(Table table, int numberOfTable) {
+    public void addTableOrder(Table table, int numberOfTable) throws RestaurantBusyException {
+        if (numberOfTable > tables.length - 1) {
+            throw new RestaurantBusyException();
+        }
+
         tables[numberOfTable] = table;
     }
 

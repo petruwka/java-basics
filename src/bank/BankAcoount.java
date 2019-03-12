@@ -14,6 +14,18 @@ public class BankAcoount {
     }
 
     public double getBalance() {
-        return balance;
+        try {
+            validateBalance();
+            return balance;
+        } catch (IllegalStateException e) {
+            return 0;
+        }
     }
+
+    private void validateBalance()  {
+        if (balance < 0) {
+            throw new IllegalStateException("balance negative");
+        }
+    }
+
 }

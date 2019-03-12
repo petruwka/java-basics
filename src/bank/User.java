@@ -16,7 +16,7 @@ public class User {
 
     public void addBankAccount(BankAcoount bankAccount) {
         if (accountLength == 5) {
-            return;
+            throw new IllegalStateException("user reached accounts limit");
         }
         bankAccounts[accountLength] = bankAccount;
         accountLength++;

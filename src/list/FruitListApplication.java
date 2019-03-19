@@ -8,7 +8,7 @@ public class FruitListApplication {
 
     public static void main(String[] args) {
 
-        List fruits = new LinkedList();
+        List<Fruit> fruits = new LinkedList();
 
 //        fruits.add(5);
         fruits.add(new Fruit("orange"));
@@ -20,6 +20,13 @@ public class FruitListApplication {
 
         System.out.println("contains apple: " + containsApple(fruits));
         System.out.println("first fruit: " + getFirst(fruits));
+
+        List<Integer> integers = new ArrayList<>();
+        integers.add(1);
+        integers.add(2);
+        integers.add(3);
+
+        System.out.println("First integer: " + getFirst(integers));
     }
 
     private static boolean containsApple(List fruits) {

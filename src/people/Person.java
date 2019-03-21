@@ -94,4 +94,13 @@ public class Person extends AbstractPerson {
 //        }
 //        return false;
 //    }
+
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 }

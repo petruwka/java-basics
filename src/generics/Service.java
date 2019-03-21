@@ -1,11 +1,11 @@
 package generics;
 
-public class Service implements HasPrice {
-
+public class Service extends Product {
     private double price;
     private String name;
 
     public Service(double price, String name) {
+        super(name, price);
         this.price = price;
         this.name = name;
     }

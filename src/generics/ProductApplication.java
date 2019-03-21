@@ -12,6 +12,10 @@ public class ProductApplication {
         products.add(new Product("TV", 2000));
         products.add(new Product("laptop", 4000));
         products.add(new Product("car", 100_000));
+        products.add(new Service(100_000, "asd"));
+
+        List<Service> services = new ArrayList<>();
+
         System.out.println(products);
 
         Consumer<Product> processor = new Increase10PerProcesor();
@@ -29,7 +33,7 @@ public class ProductApplication {
 
     }
 
-    private static void processElements(List<Product> list, Consumer<Product> processor) {
+    private static <T extends Product> void processElements(List<T> list, Consumer<? super Product> processor) {
 //        for (int i = 0; i < list.size(); i++) {
 //            processor.accept(list.get(0));
 //        }
@@ -38,7 +42,7 @@ public class ProductApplication {
 //            processor.accept(product);
 //        }
 
-        Iterator<Product> iterator = list.iterator();
+        Iterator<T> iterator = list.iterator();
         while (iterator.hasNext()) {
             Product product = iterator.next();
             processor.accept(product);

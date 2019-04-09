@@ -33,6 +33,10 @@ public class Person extends AbstractPerson {
         this.age = age;
     }
 
+    public boolean isPersonAdult() {
+        return getAge() >= 18;
+    }
+
     @Override
     public void printName() {
         System.out.println(firstName);
@@ -46,8 +50,16 @@ public class Person extends AbstractPerson {
         System.out.print(greeting + " ");
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public int getAge() {
+        return age;
     }
 
     @Override

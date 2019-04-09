@@ -8,6 +8,11 @@ public abstract class AbstractPerson {
         this.lastName = lastName;
     }
 
+
+    public String getLastName() {
+        return lastName;
+    }
+
     public abstract void printName();
 
     public void printLastName() {

@@ -2,22 +2,77 @@ package java8;
 
 import people.Person;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class PersonService {
     private List<Person> persons = new ArrayList<>();
-
+    private static String VAR = "hello";
 
     public Optional<Person> getFirstJohn() {
+
+        for (int i = 0; i < persons.size(); i++) {
+            Person person = persons.get(0);
+            //
+        }
+
         for (Person p : persons) {
             if ("John".equals(p.getFirstName())) {
                 return Optional.of(p);
             }
         }
+
+
+        Iterator<Person> iterator = persons.iterator();
+        while (iterator.hasNext()) {
+            Person next = iterator.next();
+            //
+        }
+
+
         return Optional.empty();
+    }
+
+    public Optional<Person> getFirstJohnByStreams() {
+        Stream<String> stream = persons.stream()
+//                .peek(p -> System.out.println("peek:" + p))
+//                .filter(Person::isPersonAdult)
+//                .findFirst();
+                .map(p -> p.getFirstName());
+
+//        stream.forEach(System.out::println);
+//        stream.findFirst();
+
+        Map<String, Long> collected = persons
+                .stream()
+                .collect(Collectors.groupingBy(Person::getFirstName, Collectors.counting()));
+
+
+        System.out.println("Collected stream grouping: " + collected);
+
+        // 1st category: intermediate operations
+        // map, filter, flatMap, peek, ....
+
+        // 2nd category: terminal operations
+        // count, forEach, collect, ...
+
+
+        return persons.stream()
+                .filter(p -> "John".equals(p.getFirstName()))
+                .findFirst();
+
+//        persons.stream().forEach(person -> System.out.println(person));
+
+//        stream.forEach(new Consumer<Person>() {
+//            @Override
+//            public void accept(Person person) {
+//                System.out.println(person);
+//            }
+//        });
+
+//        return Optional.empty();
     }
 
     public void addPerson(Person person) {
@@ -57,7 +112,8 @@ public class PersonService {
 
 
     public List<Person> getPersonsByName(String name) {
-         Condition nameCondition = p -> Objects.equals(p.getFirstName(), name);
+        Condition nameCondition = p -> Objects.equals(p.getFirstName(), name);
+
 
 //        Condition nameCondition = new Condition() {
 //            @Override
@@ -65,6 +121,7 @@ public class PersonService {
 //                return Objects.equals(p.getFirstName(), name);
 //            }
 //        };
+        SurnameCondition s = new SurnameCondition(name);
         return getByCondition(nameCondition);
     }
 
@@ -79,17 +136,21 @@ public class PersonService {
     }
 
 
-
     @FunctionalInterface
     public interface Condition {
         boolean test(Person p);
     }
 
-    public class AdultCondition implements Condition {
+    public static class AdultCondition implements Condition {
         @Override
         public boolean test(Person p) {
             return p.getAge() >= 18;
         }
+
+        public String getOuterPrivate() {
+            return VAR;
+        }
+
     }
 
     public class SurnameCondition implements Condition {
@@ -103,6 +164,11 @@ public class PersonService {
         public boolean test(Person p) {
             return Objects.equals(p.getLastName(), surname);
         }
+
+        public List<Person> getOuterPersons() {
+            return persons;
+        }
+
     }
 
 

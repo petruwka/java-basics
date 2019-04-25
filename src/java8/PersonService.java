@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class PersonService {
-    private List<Person> persons = new ArrayList<>();
+    private List<Person> persons = new LinkedList<>();
     private static String VAR = "hello";
 
     public Optional<Person> getFirstJohn() {
@@ -80,7 +80,6 @@ public class PersonService {
     }
 
     public List<Person> getAdults() {
-//        return getByCondition(this::isAdult);
         return getByCondition(Person::isPersonAdult);
 
 //        List<Person> adults = new ArrayList<>();

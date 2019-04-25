@@ -1,13 +1,29 @@
 package generics;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
 
+import static java.util.Collections.singletonList;
+
 public class ProductApplication {
 
     public static void main(String[] args) {
+
+//        List<Product> products = new ArrayList<>();
+//        products.add(new Product("TV", 100));
+//
+//        List<Product> products1 = singletonList(new Product("TV", 100));
+//
+
+        Product tv = new Product("TV", 1000);
+        HasPrice discountedTV = new DiscountedProduct(tv);
+
+
+        System.out.println(discountedTV.getPrice());
+
         List<Product> products = new ArrayList<>();
         products.add(new Product("TV", 2000));
         products.add(new Product("laptop", 4000));

@@ -6,8 +6,8 @@ import java.util.regex.Pattern;
 public class Regex {
 
     public static void main(String[] args) {
-        Pattern p = Pattern.compile("Hel.o world[^!]?");
-        Matcher matcher = p.matcher("HelDo world%");
+        Pattern p = Pattern.compile("Hel[.l]o world[^!]?");
+        Matcher matcher = p.matcher("Hel.o world%");
 
         // 123 456 890 => \d{3,3} \d{3,3} \d{3,3}
         // 1234567890
